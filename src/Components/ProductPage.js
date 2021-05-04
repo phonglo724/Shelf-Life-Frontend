@@ -7,6 +7,8 @@ export default function Products(props) {
         return <ProductCard
             key={product.id}
             product={product}
+            selectedProduct={props.selectedProduct}
+            backButton={props.backButton}
         />
     })
 

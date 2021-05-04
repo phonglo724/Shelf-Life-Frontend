@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import './App.css';
 import fridge from "./images/fridge.png"
 import freezer from "./images/freezer.png"
@@ -11,12 +11,24 @@ class App extends Component {
 
   state = {
     products: [],
-    correct: false
+    showProducts: false,
+    filteredProducts: []
   }
 
-  clickedStorage = () => {
+  selectedProduct = (e) => {
+    const storage = this.state.products.filter(specificProduct => {
+      // console.log(specificProduct.storage, e.currentTarget.id)
+      return specificProduct.storage === e.currentTarget.id
+    })
     this.setState({
-      correct: true
+      filteredProducts: storage,
+      showProducts: true
+    })
+  }
+
+  backButton = (e) => {
+    this.setState({
+      showProducts: false
     })
   }
 
@@ -30,15 +42,14 @@ class App extends Component {
     return (
       <div className="App" >
           <h1 className="title">SHELF LIFE</h1>
-          {this.state.correct 
-          ? <ProductPage products={this.state.products} /> 
-          : <img className="freezer" alt="freezer" src={`${freezer}`} onClick={this.clickedStorage}/>}
-          {this.state.correct 
-          ? <ProductPage products={this.state.products} /> 
-          : <img className="fridge" alt="fridge" src={`${fridge}`} onClick={this.clickedStorage}/>}
-          {this.state.correct 
-          ? <ProductPage products={this.state.products} /> 
-          : <img className="pantry" alt="pantry" src={`${pantry}`} onClick={this.clickedStorage}/>}
+            {this.state.showProducts 
+            ? <ProductPage products={this.state.filteredProducts} selectedProduct={this.selectedProduct} backButton={this.backButton} /> 
+            : 
+            <Fragment>
+              <img className="freezer" id="Freezer" alt="freezer" src={`${freezer}`} onClick={(e) => this.selectedProduct(e)} />
+              <img className="fridge" id="Fridge" alt="fridge" src={`${fridge}`} onClick={(e) => this.selectedProduct(e)} />
+              <img className="pantry" id="Pantry" alt="pantry" src={`${pantry}`} onClick={(e) => this.selectedProduct(e)} />
+            </Fragment>}
       </div>
     );
   }
