@@ -8,14 +8,14 @@ export default function Products(props) {
             key={product.id}
             product={product}
             selectedProduct={props.selectedProduct}
-            backButton={props.backButton}
+            onClick={props.backButton}
         />
     })
 
     return (
         <div className="product-container">
             <form>
-                <label for="category">Choose a category:</label>
+                <label for="category" className="category">Choose a category:</label>
                     <select name="category" id="category" >
                         <option value="Beverages">Beverages</option>
                         <option value="Fruit">Fruit</option>

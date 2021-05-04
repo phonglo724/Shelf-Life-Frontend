@@ -12,14 +12,15 @@
     transition: transform 0.6s;
     margin: 5px;
     text-align: center;
+    width: 300px;
 }
 
 .product-png {
-    height: 300px;
-    width: 250px;
+    height: 350px;
+    width: 260px;
 }
 
 .add-grocery-list {
     border-radius: 10px;
-    background: red;
+    background: green;
 }

@@ -41,9 +41,9 @@ class App extends Component {
   render() {
     return (
       <div className="App" >
-          <h1 className="title">SHELF LIFE</h1>
+          <h1 className="title" onClick={(e) => this.backButton(e)}>SHELF LIFE</h1>
             {this.state.showProducts 
-            ? <ProductPage products={this.state.filteredProducts} selectedProduct={this.selectedProduct} backButton={this.backButton} /> 
+            ? <ProductPage products={this.state.filteredProducts} selectedProduct={this.selectedProduct} /> 
             : 
             <Fragment>
               <img className="freezer" id="Freezer" alt="freezer" src={`${freezer}`} onClick={(e) => this.selectedProduct(e)} />
