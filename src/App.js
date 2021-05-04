@@ -14,19 +14,7 @@ class App extends Component {
     correct: false
   }
 
-  clickedFridge = () => {
-    this.setState({
-      correct: true
-    })
-  }
-
-  clickedFreezer = () => {
-    this.setState({
-      correct: true
-    })
-  }
-
-  clickedPantry = () => {
+  clickedStorage = () => {
     this.setState({
       correct: true
     })
@@ -42,9 +30,15 @@ class App extends Component {
     return (
       <div className="App" >
           <h1 className="title">SHELF LIFE</h1>
-          {this.state.correct ? <ProductPage products={this.state.products} /> : <img className="freezer" alt="freezer" src={`${freezer}`} onClick={this.clickedFreezer}/>}
-          {this.state.correct ? <ProductPage products={this.state.products} /> : <img className="fridge" alt="fridge" src={`${fridge}`} onClick={this.clickedFridge}/>}
-          {this.state.correct ? <ProductPage products={this.state.products} /> : <img className="pantry" alt="pantry" src={`${pantry}`} onClick={this.clickedPantry}/>}
+          {this.state.correct 
+          ? <ProductPage products={this.state.products} /> 
+          : <img className="freezer" alt="freezer" src={`${freezer}`} onClick={this.clickedStorage}/>}
+          {this.state.correct 
+          ? <ProductPage products={this.state.products} /> 
+          : <img className="fridge" alt="fridge" src={`${fridge}`} onClick={this.clickedStorage}/>}
+          {this.state.correct 
+          ? <ProductPage products={this.state.products} /> 
+          : <img className="pantry" alt="pantry" src={`${pantry}`} onClick={this.clickedStorage}/>}
       </div>
     );
   }
