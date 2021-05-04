@@ -1,11 +1,12 @@
-.App {
+* {
+  background-color: #6593A6;
   justify-content: space-around;
 }
 
 .title {
   text-align: center;
   font-size: 100px;
-  padding-bottom: 30px;
+  padding-bottom: 40px;
 }
 
 .fridge {
@@ -13,4 +14,24 @@
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
+  padding: auto;
+  height: 50vh;
+}
+
+.freezer {
+  position: absolute;
+  top: 60%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  padding: auto;
+  height: 50vh;
+}
+
+.pantry {
+  position: absolute;
+  top: 60%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  padding: auto;
+  height: 75vh;
 }

@@ -1,18 +1,25 @@
+.product-container {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    justify-content: flex-start;
+}
+
 .product-card {
-    width: 300px;
-    min-width: 300px;
-    height: auto;
+    border: 2px solid;
+    position: relative;
     border-radius: 20px;
-    margin: 10px;
-    min-height: 356px;
-    transition: all .25s ease;
-    box-shadow: 0px 0px 0px 0px rgba(0,0,0,.08);
-    cursor: pointer;
-    border: 2px solid green;
+    transition: transform 0.6s;
+    margin: 5px;
     text-align: center;
 }
 
 .product-png {
     height: auto;
     width: 250px;
+}
+
+.add-grocery-list {
+    border-radius: 10px;
+    background: red;
 }
