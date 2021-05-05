@@ -9,6 +9,7 @@ export default function Products(props) {
             product={product}
             selectedProduct={props.selectedProduct}
             onClick={props.backButton}
+            addProduct={props.addProductToShoppingList}
         />
     })
 

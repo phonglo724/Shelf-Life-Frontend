@@ -12,7 +12,18 @@ class App extends Component {
   state = {
     products: [],
     showProducts: false,
-    filteredProducts: []
+    filteredProducts: [],
+    shoppingList: []
+  }
+
+  addProductToShoppingList = (e) => {
+    const list = this.state.products.find(addProduct => {
+      return addProduct.id === e.currentTarget.id
+    })
+    this.setState({
+      shoppingList: list,
+      showProducts: true
+    })
   }
 
   selectedProduct = (e) => {
@@ -43,7 +54,7 @@ class App extends Component {
       <div className="App" >
           <h1 className="title" onClick={(e) => this.backButton(e)}>SHELF LIFE</h1>
             {this.state.showProducts 
-            ? <ProductPage products={this.state.filteredProducts} selectedProduct={this.selectedProduct} /> 
+            ? <ProductPage products={this.state.filteredProducts} selectedProduct={this.selectedProduct} addProduct={this.addProductToShoppingList} /> 
             : 
             <Fragment>
               <img className="freezer" id="Freezer" alt="freezer" src={`${freezer}`} onClick={(e) => this.selectedProduct(e)} />

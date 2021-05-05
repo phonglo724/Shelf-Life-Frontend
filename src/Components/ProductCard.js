@@ -14,7 +14,7 @@ export default function ProductCard(props) {
                 <p>Quantities: {props.product.quantity}</p>
                 <p>Category: {props.product.category}</p>
                 <p>Stored: {props.product.storage}</p>
-                <button className="add-grocery-list">Add to Grocery List</button>
+                <button className="add-grocery-list" addProduct={props.addProductToShoppingList}>Add to Grocery List</button>
             </div>
         </div>
     )
