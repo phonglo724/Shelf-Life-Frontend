@@ -6,21 +6,44 @@
 }
 
 .product-card {
-    border: 2px solid;
+    border: 2px solid #BFC9D1;
     position: relative;
-    border-radius: 20px;
+    /* border-radius: 10px; */
     transition: transform 0.6s;
     margin: 5px;
-    text-align: center;
-    width: 300px;
+    width: 310px;
+    background-color: white;
 }
 
 .product-png {
-    height: 70px;
-    width: 60px;
+    height: 80px;
+    width: 70px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.add-grocery-list {
-    border-radius: 10px;
-    background: green;
+/* .add-grocery-list {
+    border-radius: 2px;
+    background-color: red;
+    color: white;
+}
+
+.remove-from-list {
+    border-radius: 2px;
+    background-color: gray;
+    color: white;
+}
+
+#button {
+    margin-left: 20px;
+} */
+
+h2 {
+    font-size: 18px;
+}
+
+p {
+    font-size: 16px;
+    margin: 0;
 }

@@ -52,7 +52,7 @@ class App extends Component {
   render() {
     return (
       <div className="App" >
-          <h1 className="title" onClick={(e) => this.backButton(e)}>SHELF LIFE</h1>
+          <h1 className="title" onClick={(e) => this.backButton(e)}>Shelf Life</h1>
             {this.state.showProducts 
             ? <ProductPage products={this.state.filteredProducts} selectedProduct={this.selectedProduct} addProduct={this.addProductToShoppingList} /> 
             : 
