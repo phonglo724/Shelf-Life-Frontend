@@ -1,7 +1,15 @@
-export default function GroceryListPage(props) {
-    return (
-        <div>
-            <h1>GROCERY LIST PAGE</h1>
-        </div>
-    )
-}
+// import React from 'react';
+// import ProductCard from './ProductCard';
+
+// export default function GroceryListPage(props) {
+
+//     const displayGroceryList = () => props.shoppingLists.map(shoppingList => {
+//         return <ProductCard />
+//     })
+
+//     return (
+//         <ul>
+//             { displayGroceryList() }
+//         </ul>
+//     )
+// }

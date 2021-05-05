@@ -4,6 +4,7 @@ import fridge from "./images/fridge.png"
 import freezer from "./images/freezer.png"
 import pantry from "./images/pantry.png"
 import ProductPage from './Components/ProductPage';
+// import GroceryListPage from './Components/GroceryListPage';
 
 const baseURL = "http://localhost:9000/products/"
 
@@ -13,7 +14,7 @@ class App extends Component {
     products: [],
     showProducts: false,
     filteredProducts: [],
-    shoppingList: []
+    shoppingLists: []
   }
 
   addProductToShoppingList = (e) => {
@@ -21,29 +22,28 @@ class App extends Component {
       return addProduct.id === e.currentTarget.id
     })
     this.setState({
-      shoppingList: [...this.state.shoppingList, list],
+      shoppingLists: [...this.state.shoppingList, list],
       showProducts: true
     })
   }
 
   deleteProduct = (productId) => {
+    console.log('deleteProduct')
     fetch(baseURL + productId, {
       method: "DELETE",
     })
-    const storage = this.state.products.filter(specificProduct => {
-      return specificProduct.storage !== productId
-    })
-    this.setState({
-      filteredProducts: storage,
-      showProducts: false
-    })
-    const remainingProducts = this.state.products.filter(product => {
-      return product.storage !== productId
-    })
-    this.setState({
-      filteredProducts: remainingProducts,
-      showProducts: false
-    })
+      .then(response => {
+        const remainingFilteredProducts = this.state.filteredProducts.filter(filteredProduct => {
+          return filteredProduct.id !== productId
+        })
+        const remainingProducts = this.state.products.filter(product => {
+          return product.id !== productId
+        })
+        this.setState({
+          products: remainingProducts,
+          filteredProducts: remainingFilteredProducts
+        })
+      })
   }
 
   selectedProduct = (e) => {
@@ -73,6 +73,7 @@ class App extends Component {
     return (
       <div className="App" >
           <h1 className="title" onClick={(e) => this.backButton(e)}>Shelf Life</h1>
+          {/* <GroceryListPage /> */}
             {this.state.showProducts 
             ? <ProductPage 
                 products={this.state.filteredProducts} 
