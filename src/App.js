@@ -5,7 +5,7 @@ import freezer from "./images/freezer.png"
 import pantry from "./images/pantry.png"
 import ProductPage from './Components/ProductPage';
 
-const baseURL = "http://localhost:9000/products"
+const baseURL = "http://localhost:9000/products/"
 
 class App extends Component {
 
@@ -21,8 +21,28 @@ class App extends Component {
       return addProduct.id === e.currentTarget.id
     })
     this.setState({
-      shoppingList: list,
+      shoppingList: [...this.state.shoppingList, list],
       showProducts: true
+    })
+  }
+
+  deleteProduct = (productId) => {
+    fetch(baseURL + productId, {
+      method: "DELETE",
+    })
+    const storage = this.state.products.filter(specificProduct => {
+      return specificProduct.storage !== productId
+    })
+    this.setState({
+      filteredProducts: storage,
+      showProducts: false
+    })
+    const remainingProducts = this.state.products.filter(product => {
+      return product.storage !== productId
+    })
+    this.setState({
+      filteredProducts: remainingProducts,
+      showProducts: false
     })
   }
 
@@ -54,12 +74,35 @@ class App extends Component {
       <div className="App" >
           <h1 className="title" onClick={(e) => this.backButton(e)}>Shelf Life</h1>
             {this.state.showProducts 
-            ? <ProductPage products={this.state.filteredProducts} selectedProduct={this.selectedProduct} addProduct={this.addProductToShoppingList} /> 
+            ? <ProductPage 
+                products={this.state.filteredProducts} 
+                selectedProduct={this.selectedProduct} 
+                addProduct={this.addProductToShoppingList}
+                deleteProduct={this.deleteProduct}
+              /> 
             : 
             <Fragment>
-              <img className="freezer" id="Freezer" alt="freezer" src={`${freezer}`} onClick={(e) => this.selectedProduct(e)} />
-              <img className="fridge" id="Fridge" alt="fridge" src={`${fridge}`} onClick={(e) => this.selectedProduct(e)} />
-              <img className="pantry" id="Pantry" alt="pantry" src={`${pantry}`} onClick={(e) => this.selectedProduct(e)} />
+              <img 
+                className="freezer" 
+                id="Freezer" 
+                alt="freezer" 
+                src={`${freezer}`} 
+                onClick={(e) => this.selectedProduct(e)} 
+              />
+              <img 
+                className="fridge" 
+                id="Fridge" 
+                alt="fridge" 
+                src={`${fridge}`} 
+                onClick={(e) => this.selectedProduct(e)} 
+              />
+              <img 
+                className="pantry" 
+                id="Pantry" 
+                alt="pantry" 
+                src={`${pantry}`} 
+                onClick={(e) => this.selectedProduct(e)} 
+              />
             </Fragment>}
       </div>
     );

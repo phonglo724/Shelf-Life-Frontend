@@ -10,6 +10,7 @@ export default function Products(props) {
             selectedProduct={props.selectedProduct}
             onClick={props.backButton}
             addProduct={props.addProductToShoppingList}
+            deleteProduct={props.deleteProduct}
         />
     })
 
