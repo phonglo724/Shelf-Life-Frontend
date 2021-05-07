@@ -1,5 +1,6 @@
 import React from 'react'
 import ProductCard from './ProductCard'
+import ProductForm from './ProductForm'
 
 export default function Products(props) {
 
@@ -9,28 +10,14 @@ export default function Products(props) {
             product={product}
             selectedProduct={props.selectedProduct}
             onClick={props.backButton}
-            addProduct={props.addProductToShoppingList}
+            addProductAction={props.addProductToShoppingList}
             deleteProduct={props.deleteProduct}
         />
     })
 
     return (
-        <div className="product-container">
-            <form>
-                <label for="category" className="category">Choose a category:</label>
-                    <select name="category" id="category" >
-                        <option value="Beverages">Beverages</option>
-                        <option value="Fruit">Fruit</option>
-                        <option value="Meat and Seafood">Meat & Seafood</option>
-                        <option value="Vegetables">Vegetables</option>
-                        <option value="Condiments and Spices">Condiments & Spices</option>
-                        <option value="Grains and Bread">Grains & Bread</option>
-                        <option value="Snacks">Snacks</option>
-                        <option value="Canned Goods">Canned Goods</option>
-                        <option value="Sauces and Oils">Sauces & Oils</option>
-                        <option value="Other">Other</option>
-                    </select>
-            </form>
+        <div>
+            <ProductForm />
             <ul>
                 { displayProducts() }
             </ul>

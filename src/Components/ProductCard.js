@@ -7,7 +7,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup'
 export default function ProductCard(props) {
 
     const addClick = (e) => {
-        props.addProduct(props.product.id)
+        props.addProductAction(props.product)
     }
 
     const deleteClick = (e) => {

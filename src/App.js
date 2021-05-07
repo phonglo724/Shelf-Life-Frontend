@@ -1,12 +1,16 @@
 import React, { Component, Fragment } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './App.css';
 import fridge from "./images/fridge.png"
 import freezer from "./images/freezer.png"
 import pantry from "./images/pantry.png"
 import ProductPage from './Components/ProductPage';
-// import GroceryListPage from './Components/GroceryListPage';
+import NavBar from './Components/NavBar';
+import GroceryListPage from './Components/GroceryListPage';
 
-const baseURL = "http://localhost:9000/products/"
+const baseURL = ("http://localhost:9000/")
+const productsURL = (`${baseURL}products/`)
+const groceryListURL = (`${baseURL}lists/`)
 
 class App extends Component {
 
@@ -17,19 +21,21 @@ class App extends Component {
     shoppingLists: []
   }
 
-  addProductToShoppingList = (e) => {
-    const list = this.state.products.find(addProduct => {
-      return addProduct.id === e.currentTarget.id
+  addProductToShoppingList = (productId) => {
+    const list = this.state.products.find(product => {
+      return product.id === productId.id
     })
-    this.setState({
-      shoppingLists: [...this.state.shoppingList, list],
-      showProducts: true
-    })
+    if(!list){
+      this.setState({
+        shoppingLists: [...this.state.shoppingLists, list]
+      })
+    }
   }
+    
 
   deleteProduct = (productId) => {
-    console.log('deleteProduct')
-    fetch(baseURL + productId, {
+    // console.log('deleteProduct')
+    fetch(`${productsURL}${productId}`, {
       method: "DELETE",
     })
       .then(response => {
@@ -64,21 +70,30 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch(baseURL)
+    fetch(productsURL)
       .then(response => response.json())
       .then(products => this.setState({products}))
+    fetch(groceryListURL)
+      .then(response => response.json())
+      .then(shoppingLists => this.setState({shoppingLists}))
   }
 
   render() {
     return (
       <div className="App" >
+        <BrowserRouter>
+        <NavBar />
+        <Switch>
+          <Route component={GroceryListPage} path='' exact />
+        </Switch>
+        </BrowserRouter>
           <h1 className="title" onClick={(e) => this.backButton(e)}>Shelf Life</h1>
-          {/* <GroceryListPage /> */}
             {this.state.showProducts 
             ? <ProductPage 
                 products={this.state.filteredProducts} 
+                shoppingLists={this.state.shoppingLists}
                 selectedProduct={this.selectedProduct} 
-                addProduct={this.addProductToShoppingList}
+                addProductAction={this.addProductToShoppingList}
                 deleteProduct={this.deleteProduct}
               /> 
             : 
