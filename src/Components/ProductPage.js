@@ -2,7 +2,7 @@ import React from 'react'
 import ProductCard from './ProductCard'
 import ProductForm from './ProductForm'
 
-export default function Products(props) {
+export default function ProductPage(props) {
 
     const displayProducts = () => props.products.map(product => {
         return <ProductCard
@@ -10,7 +10,7 @@ export default function Products(props) {
             product={product}
             selectedProduct={props.selectedProduct}
             onClick={props.backButton}
-            addProductAction={props.addProductToShoppingList}
+            addProductAction={props.addProductAction}
             deleteProduct={props.deleteProduct}
         />
     })

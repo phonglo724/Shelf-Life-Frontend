@@ -6,7 +6,7 @@ export default function NavBar() {
         <header>
             <div>
                 <nav>
-                    <NavLink to='' exact>Grocery List</NavLink>
+                    <NavLink to='/lists' exact>Grocery List</NavLink>
                 </nav>
             </div>
         </header>

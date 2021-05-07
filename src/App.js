@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
 import './App.css';
 import fridge from "./images/fridge.png"
 import freezer from "./images/freezer.png"
@@ -21,13 +21,15 @@ class App extends Component {
     shoppingLists: []
   }
 
-  addProductToShoppingList = (productId) => {
-    const list = this.state.products.find(product => {
-      return product.id === productId.id
+  addProductToShoppingList = (product) => {
+    // console.log('addProductToShoppingList')
+    const list = this.state.shoppingLists.find(item => {
+      return item.id === product.id
     })
+    console.log('list', list)
     if(!list){
       this.setState({
-        shoppingLists: [...this.state.shoppingLists, list]
+        shoppingLists: [...this.state.shoppingLists, product]
       })
     }
   }
@@ -82,16 +84,19 @@ class App extends Component {
     return (
       <div className="App" >
         <BrowserRouter>
-        <NavBar />
-        <Switch>
-          <Route component={GroceryListPage} path='' exact />
-        </Switch>
-        </BrowserRouter>
+          <NavBar />
+            <Switch>
+              <Route exact path="/lists">
+                <GroceryListPage shoppingLists={this.state.shoppingLists}/>
+              </Route>
+            </Switch>
+        <NavLink to="/" style={{textDecoration: 'none'}}>
           <h1 className="title" onClick={(e) => this.backButton(e)}>Shelf Life</h1>
+        </NavLink>
+        <Route exact path="/">
             {this.state.showProducts 
             ? <ProductPage 
                 products={this.state.filteredProducts} 
-                shoppingLists={this.state.shoppingLists}
                 selectedProduct={this.selectedProduct} 
                 addProductAction={this.addProductToShoppingList}
                 deleteProduct={this.deleteProduct}
@@ -120,6 +125,8 @@ class App extends Component {
                 onClick={(e) => this.selectedProduct(e)} 
               />
             </Fragment>}
+          </Route>
+        </BrowserRouter>
       </div>
     );
   }
