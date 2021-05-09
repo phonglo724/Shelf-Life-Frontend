@@ -9,9 +9,11 @@ export default function ProductPage(props) {
             key={product.id}
             product={product}
             selectedProduct={props.selectedProduct}
+            changedEditMode={props.changedEditMode}
             onClick={props.backButton}
             addProductAction={props.addProductAction}
             deleteProduct={props.deleteProduct}
+            handleProductUpdate={props.handleProductUpdate}
         />
     })
 

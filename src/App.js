@@ -18,7 +18,18 @@ class App extends Component {
     products: [],
     showProducts: false,
     filteredProducts: [],
-    shoppingLists: []
+    shoppingLists: [],
+    isInEditMode: false
+  }
+
+  handleProductUpdate = (product, updatedValue) => {
+    const newProduct = this.state.products.find(item => {
+      return item.id === product.id
+    })
+    newProduct.quantity = updatedValue
+    this.setState({
+      products: [...this.state.products, newProduct]
+    })
   }
 
   addProductToShoppingList = (product) => {
@@ -34,7 +45,6 @@ class App extends Component {
     }
   }
     
-
   deleteProduct = (productId) => {
     // console.log('deleteProduct')
     fetch(`${productsURL}${productId}`, {
@@ -62,6 +72,12 @@ class App extends Component {
     this.setState({
       filteredProducts: storage,
       showProducts: true
+    })
+  }
+
+  changedEditMode = () => {
+    this.setState({
+      isInEditMode: !this.state.isInEditMode
     })
   }
 
@@ -97,9 +113,11 @@ class App extends Component {
             {this.state.showProducts 
             ? <ProductPage 
                 products={this.state.filteredProducts} 
+                changedEditMode={this.changedEditMode}
                 selectedProduct={this.selectedProduct} 
                 addProductAction={this.addProductToShoppingList}
                 deleteProduct={this.deleteProduct}
+                handleProductUpdate={this.handleProductUpdate}
               /> 
             : 
             <Fragment>
