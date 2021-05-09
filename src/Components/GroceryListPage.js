@@ -6,7 +6,7 @@ export default function GroceryListPage(props) {
         return (
             <ul>
                 {props.shoppingLists.map(item => {
-                    return <li>{item.name}</li>})
+                    return <li key={item.id}>{item.name}</li>})
                 }
             </ul>
         )

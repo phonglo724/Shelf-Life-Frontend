@@ -7,7 +7,9 @@ import ButtonGroup from '@material-ui/core/ButtonGroup'
 export default function ProductCard(props) {
 
     const [quantityEdit, setQuantityEdit] = useState(false)
-    const [newQuantity, setNewQuantity] = useState(null)
+    const [newQuantity, setNewQuantity] = useState(0)
+    const [storageEdit, setStorageEdit] = useState(false)
+    const [newStorage, setNewStorage] = useState('')
 
     const addClick = (e) => {
         props.addProductAction(props.product)
@@ -18,17 +20,30 @@ export default function ProductCard(props) {
         props.deleteProduct(props.product.id)
     }
 
-    const buildQuantity = () => {
+    const changeQuantityValue = () => {
         return quantityEdit ?
         <span>
-            <input type="text" value={newQuantity} onChange={(e) => setNewQuantity(e.target.value)} />
+            <input type="number" value={newQuantity} onChange={(e) => setNewQuantity(e.target.value)} />
             <button onClick={(e) => {
                 e.stopPropagation()
-                props.handleProductUpdate(props.product, newQuantity)
+                props.handleProductUpdate(props.product, newQuantity, newStorage)
                 setQuantityEdit(false)
                 }}>OK</button>
         </span> :
         <span>{props.product.quantity}</span>
+    }
+
+    const changeStorageValue = () => {
+        return storageEdit ?
+        <span>
+            <input type="text" value={newStorage} onChange={(e) => setNewStorage(e.target.value)} />
+            <button onClick={(e) => {
+                e.stopPropagation()
+                props.handleProductUpdate(props.product, newQuantity, newStorage)
+                setStorageEdit(false)
+                }}>OK</button>
+        </span> :
+        <span>{props.product.storage}</span>
     }
   
     return (
@@ -37,8 +52,8 @@ export default function ProductCard(props) {
                 <img className="product-png" src={props.product.image} alt={props.product.name} />
                 <h2>{props.product.name}</h2>
                 <p>Category: {props.product.category}</p>
-                <p onClick={() => {setQuantityEdit(true)}}>Quantities: {buildQuantity()}</p>
-                <p>Stored: {props.product.storage}</p>
+                <p onClick={() => {setQuantityEdit(true)}}>Quantities: {changeQuantityValue()}</p>
+                <p onClick={() => {setStorageEdit(true)}}>Stored: {changeStorageValue()}</p>
                 <p>Date Bought: <Moment format="MM/DD/YYYY">{props.product.dateBought}</Moment></p>
                 <p>Expiration Date: <Moment format="MM/DD/YYYY">{props.product.expirationDate}</Moment></p>
                 <p>Remaining Shelf Life: <Moment fromNow>{props.product.expirationDate}</Moment></p>

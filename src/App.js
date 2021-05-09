@@ -19,25 +19,38 @@ class App extends Component {
     showProducts: false,
     filteredProducts: [],
     shoppingLists: [],
-    isInEditMode: false
   }
 
-  handleProductUpdate = (product, updatedValue) => {
-    const newProduct = this.state.products.find(item => {
-      return item.id === product.id
-    })
-    newProduct.quantity = updatedValue
-    this.setState({
-      products: [...this.state.products, newProduct]
-    })
-  }
+  handleProductUpdate = (product, updatedQuantity, updatedStorage) => {
+    // fetch(`${productsURL}${product}`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Accept": "application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     quantity: "",
+    //     storage: ""
+    //   })
+    // })
+    // .then(response => {
+      const newProduct = this.state.products.find(item => {
+        return item.id === product.id
+      })
+      newProduct.quantity = updatedQuantity
+      newProduct.storage = updatedStorage
+      this.setState({
+        products: [...this.state.products, newProduct]
+      })
+    }
+  // )}
+  
 
   addProductToShoppingList = (product) => {
     // console.log('addProductToShoppingList')
     const list = this.state.shoppingLists.find(item => {
       return item.id === product.id
     })
-    console.log('list', list)
     if(!list){
       this.setState({
         shoppingLists: [...this.state.shoppingLists, product]
@@ -75,12 +88,6 @@ class App extends Component {
     })
   }
 
-  changedEditMode = () => {
-    this.setState({
-      isInEditMode: !this.state.isInEditMode
-    })
-  }
-
   backButton = (e) => {
     this.setState({
       showProducts: false
@@ -113,7 +120,6 @@ class App extends Component {
             {this.state.showProducts 
             ? <ProductPage 
                 products={this.state.filteredProducts} 
-                changedEditMode={this.changedEditMode}
                 selectedProduct={this.selectedProduct} 
                 addProductAction={this.addProductToShoppingList}
                 deleteProduct={this.deleteProduct}
