@@ -1,4 +1,5 @@
 import React from 'react'
+import '../ProductCard.css';
 import ProductCard from './ProductCard'
 import ProductForm from './ProductForm'
 
@@ -18,8 +19,10 @@ export default function ProductPage(props) {
 
     return (
         <div>
-            <ProductForm />
-            <ul>
+            <ProductForm 
+                handleCategoryFilter={props.handleCategoryFilter}
+            />
+            <ul className="display-products">
                 { displayProducts() }
             </ul>
         </div>

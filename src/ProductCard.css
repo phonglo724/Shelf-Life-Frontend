@@ -1,3 +1,13 @@
+.display-products {
+    margin: 0;
+    padding: 0 0 0 65px;
+}
+
+.product-form {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
 .product-container {
     position: relative;
     display: inline-block;
@@ -22,22 +32,6 @@
     margin-left: auto;
     margin-right: auto;
 }
-
-/* .add-grocery-list {
-    border-radius: 2px;
-    background-color: red;
-    color: white;
-}
-
-.remove-from-list {
-    border-radius: 2px;
-    background-color: gray;
-    color: white;
-}
-
-#button {
-    margin-left: 20px;
-} */
 
 h2 {
     font-size: 18px;

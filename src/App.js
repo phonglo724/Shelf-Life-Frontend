@@ -18,7 +18,22 @@ class App extends Component {
     products: [],
     showProducts: false,
     filteredProducts: [],
-    shoppingLists: [],
+    shoppingLists: []
+  }
+
+  handleCategoryFilter = (product, updatedCategory) => {
+    console.log('category filter')
+    const categoryProduct = this.state.filteredProducts.filter(filteredProduct => {
+      console.log('category', filteredProduct.category)
+      return filteredProduct === product
+    })
+    categoryProduct.category = updatedCategory
+    if(!categoryProduct){
+      this.setState({
+        filteredProducts: categoryProduct,
+        showProducts: true
+      })
+    }
   }
 
   handleProductUpdate = (product, updatedQuantity, updatedStorage) => {
@@ -108,11 +123,6 @@ class App extends Component {
       <div className="App" >
         <BrowserRouter>
           <NavBar />
-            <Switch>
-              <Route exact path="/lists">
-                <GroceryListPage shoppingLists={this.state.shoppingLists}/>
-              </Route>
-            </Switch>
         <NavLink to="/" style={{textDecoration: 'none'}}>
           <h1 className="title" onClick={(e) => this.backButton(e)}>Shelf Life</h1>
         </NavLink>
@@ -124,6 +134,7 @@ class App extends Component {
                 addProductAction={this.addProductToShoppingList}
                 deleteProduct={this.deleteProduct}
                 handleProductUpdate={this.handleProductUpdate}
+                handleCategoryFilter={this.handleCategoryFilter}
               /> 
             : 
             <Fragment>
@@ -150,6 +161,11 @@ class App extends Component {
               />
             </Fragment>}
           </Route>
+          <Switch>
+            <Route exact path="/lists">
+                <GroceryListPage shoppingLists={this.state.shoppingLists}/>
+            </Route>
+          </Switch>
         </BrowserRouter>
       </div>
     );

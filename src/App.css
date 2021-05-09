@@ -3,10 +3,27 @@
   justify-content: space-around;
 }
 
+.navigation {
+  font-size: 20px;
+  text-align: right;
+  padding-right: 5px;
+}
+
+.navigation:hover {
+  color: white;
+}
+
+.shopping-list {
+  font-size: 30px;
+  list-style-position: inside;
+  margin: 15px;
+  left: 50%;
+}
+
 .title {
   text-align: center;
   font-size: 100px;
-  padding-bottom: 40px;
+  /* padding-bottom: 40px; */
   cursor: pointer;
   color: gray;
 }

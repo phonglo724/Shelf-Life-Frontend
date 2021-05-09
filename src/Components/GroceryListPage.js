@@ -1,14 +1,15 @@
 import React from 'react';
+import '../App.css';
 
 export default function GroceryListPage(props) {
 
     const displayGroceryList = () => {
         return (
-            <ul>
+            <ol className="shopping-list">
                 {props.shoppingLists.map(item => {
-                    return <li key={item.id}>{item.name}</li>})
+                    return <li className="shopping-list" key={item.id}>{item.name}</li>})
                 }
-            </ul>
+            </ol>
         )
     }
 
