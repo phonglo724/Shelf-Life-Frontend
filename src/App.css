@@ -9,10 +9,6 @@
   padding-right: 5px;
 }
 
-.navigation:hover {
-  color: white;
-}
-
 .shopping-list {
   font-size: 30px;
   list-style-position: inside;

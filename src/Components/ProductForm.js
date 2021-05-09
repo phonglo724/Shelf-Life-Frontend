@@ -11,7 +11,7 @@ export default function ProductForm(props) {
     return (
         <div className="product-form">
             <label for="category" className="category">Choose a category:</label>
-                <select name="category" id="category" value="" onChange={handleChange}>
+                <select name="category" id="category" onChange={handleChange}>
                     <option value="Beverages">Beverages</option>
                     <option value="Fruit">Fruit</option>
                     <option value="Meat and Seafood">Meat & Seafood</option>
