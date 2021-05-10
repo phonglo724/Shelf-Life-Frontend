@@ -56,7 +56,7 @@ export default function ProductCard(props) {
                 <p onClick={() => {setStorageEdit(true)}}>Stored: {changeStorageValue()}</p>
                 <p>Date Bought: <Moment format="MM/DD/YYYY">{props.product.dateBought}</Moment></p>
                 <p>Expiration Date: <Moment format="MM/DD/YYYY">{props.product.expirationDate}</Moment></p>
-                <p>Remaining Shelf Life: <Moment fromNow>{props.product.expirationDate}</Moment></p>
+                <p className="last-btn">Remaining Shelf Life: <Moment fromNow>{props.product.expirationDate}</Moment></p>
                     <ButtonGroup size="small" >
                         <Button variant="contained" onClick={addClick}>Add to Grocery List</Button>
                         <Button variant="contained" onClick={deleteClick}>Remove from List</Button>
