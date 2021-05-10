@@ -18,25 +18,21 @@ class App extends Component {
     products: [],
     showProducts: false,
     filteredProducts: [],
-    shoppingLists: []
+    shoppingLists: [],
+    storage: ""
   }
 
-  handleCategoryFilter = (product, updatedCategory) => {
+  handleCategoryFilter = (updatedCategory) => {
     console.log('category filter')
-    const categoryProduct = this.state.filteredProducts.filter(filteredProduct => {
-      console.log('category', filteredProduct.category)
-      return filteredProduct === product
+    const categoryProduct = this.state.products.filter(product => {
+      return product.category === updatedCategory && product.storage === this.state.storage
     })
-    categoryProduct.category = updatedCategory
-    if(!categoryProduct){
-      this.setState({
-        filteredProducts: categoryProduct,
-        showProducts: true
-      })
-    }
+    this.setState({
+      filteredProducts: categoryProduct
+    })
   }
 
-  handleProductUpdate = (product, updatedQuantity, updatedStorage) => {
+  handleProductUpdate = (product, updatedValue, productQuantity) => {
     // fetch(`${productsURL}${product}`, {
     //   method: "POST",
     //   headers: {
@@ -49,13 +45,18 @@ class App extends Component {
     //   })
     // })
     // .then(response => {
-      const newProduct = this.state.products.find(item => {
+      const products = [...this.state.products]
+      const newProduct = products.find(item => {
         return item.id === product.id
       })
-      newProduct.quantity = updatedQuantity
-      newProduct.storage = updatedStorage
+      if(productQuantity === "quantity"){
+        newProduct.quantity = updatedValue
+      } else {
+        console.log('productQuantity', productQuantity)
+        newProduct.storage = updatedValue
+      }
       this.setState({
-        products: [...this.state.products, newProduct]
+        products: products
       })
     }
   // )}
@@ -98,6 +99,7 @@ class App extends Component {
       return specificProduct.storage === e.currentTarget.id
     })
     this.setState({
+      storage: e.currentTarget.id,
       filteredProducts: storage,
       showProducts: true
     })

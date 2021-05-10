@@ -26,7 +26,7 @@ export default function ProductCard(props) {
             <input type="number" value={newQuantity} onChange={(e) => setNewQuantity(e.target.value)} />
             <button onClick={(e) => {
                 e.stopPropagation()
-                props.handleProductUpdate(props.product, newQuantity, newStorage)
+                props.handleProductUpdate(props.product, newQuantity, "quantity")
                 setQuantityEdit(false)
                 }}>OK</button>
         </span> :
@@ -39,7 +39,7 @@ export default function ProductCard(props) {
             <input type="text" value={newStorage} onChange={(e) => setNewStorage(e.target.value)} />
             <button onClick={(e) => {
                 e.stopPropagation()
-                props.handleProductUpdate(props.product, newQuantity, newStorage)
+                props.handleProductUpdate(props.product, newStorage, "storage")
                 setStorageEdit(false)
                 }}>OK</button>
         </span> :

@@ -3,9 +3,9 @@ import '../ProductCard.css';
 
 export default function ProductForm(props) {
 
-    const handleChange = () => {
-        // console.log(e.target.value)
-        props.handleCategoryFilter(props.product)
+    const handleChange = (e) => {
+        console.log(e.target.value)
+        props.handleCategoryFilter(e.target.value)
     }
 
     return (
