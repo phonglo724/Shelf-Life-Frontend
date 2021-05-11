@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
 import './App.css';
-import fridge from "./images/fridge.png";
-import freezer from "./images/freezer.png";
+import fridge from "./images/fridge1.png";
+import freezer from "./images/freezer1.png";
 import pantry from "./images/pantry.png";
 import ProductPage from './Components/ProductPage';
 import NavBar from './Components/NavBar';

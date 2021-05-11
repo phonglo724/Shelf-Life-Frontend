@@ -7,7 +7,16 @@ export default function NavBar() {
         <header>
             <div>
                 <nav className="navigation">
-                    <NavLink to='/lists' exact style={{textDecoration: 'none'}}>Grocery List</NavLink>
+                    <NavLink 
+                        to='/lists' 
+                        exact style={{textDecoration: 'none'}}
+                    >
+                        <img 
+                            src="http://cdn.onlinewebfonts.com/svg/img_82026.png" 
+                            alt="list-icon" 
+                            className="list-icon"
+                        />
+                    </NavLink>
                 </nav>
             </div>
         </header>

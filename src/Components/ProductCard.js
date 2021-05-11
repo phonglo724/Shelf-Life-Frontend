@@ -3,7 +3,6 @@ import Moment from 'react-moment';
 import '../ProductCard.css';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Popper from '@material-ui/core/Popper';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -14,15 +13,10 @@ export default function ProductCard(props) {
     const [newQuantity, setNewQuantity] = useState('')
     const [storageEdit, setStorageEdit] = useState(false)
     const [newStorage, setNewStorage] = useState('')
-    const [enchorEl, setEnchorEl] = useState(null)
 
-    const addClick = (e) => {
+    const addClick = () => {
         props.addProductAction(props.product)
-        setEnchorEl(enchorEl ? null : e.currentTarget)
     }
-
-    const popperOpen = Boolean(enchorEl)
-    const popperId = popperOpen ? 'simple-popper' : undefined
 
     const deleteClick = (e) => {
         e.stopPropagation()
@@ -68,9 +62,6 @@ export default function ProductCard(props) {
                 <p className="last-btn">Remaining Shelf Life: <Moment fromNow>{props.product.expirationDate}</Moment></p>
                     <ButtonGroup size="small" >
                         <Button variant="contained" onClick={addClick}>Add to Grocery List</Button>
-                        <Popper id={popperId} open={popperOpen} enchorEl={enchorEl}>
-                            <Paper elevation={3} className="paper-popper">Added to Grocery List</Paper>
-                        </Popper>
                         <Button variant="contained" onClick={deleteClick}>Remove from List</Button>
                     </ButtonGroup>
             </Paper>
