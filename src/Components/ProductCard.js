@@ -4,6 +4,9 @@ import '../ProductCard.css';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Popper from '@material-ui/core/Popper';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
 
 export default function ProductCard(props) {
 
@@ -11,14 +14,14 @@ export default function ProductCard(props) {
     const [newQuantity, setNewQuantity] = useState('')
     const [storageEdit, setStorageEdit] = useState(false)
     const [newStorage, setNewStorage] = useState('')
-    const [anchorEl, setAnchorEl] = useState(null)
+    const [enchorEl, setEnchorEl] = useState(null)
 
     const addClick = (e) => {
         props.addProductAction(props.product)
-        setAnchorEl(anchorEl ? null : e.currentTarget)
+        setEnchorEl(enchorEl ? null : e.currentTarget)
     }
 
-    const popperOpen = Boolean(anchorEl)
+    const popperOpen = Boolean(enchorEl)
     const popperId = popperOpen ? 'simple-popper' : undefined
 
     const deleteClick = (e) => {
@@ -29,12 +32,12 @@ export default function ProductCard(props) {
     const changeQuantityValue = () => {
         return quantityEdit ?
         <span>
-            <input type="number" value={newQuantity} onChange={(e) => setNewQuantity(e.target.value)} />
-            <button onClick={(e) => {
+            <TextField id="standard-basic" style={{width: '5ch'}}type="number" value={newQuantity} onChange={(e) => setNewQuantity(e.target.value)} />
+            <Button onClick={(e) => {
                 e.stopPropagation()
                 props.handleProductUpdate(props.product, newQuantity, "quantity")
                 setQuantityEdit(false)
-                }}>OK</button>
+                }}>OK</Button>
         </span> :
         <span>{props.product.quantity}</span>
     }
@@ -42,19 +45,19 @@ export default function ProductCard(props) {
     const changeStorageValue = () => {
         return storageEdit ?
         <span>
-            <input type="text" value={newStorage} onChange={(e) => setNewStorage(e.target.value)} />
-            <button onClick={(e) => {
+            <TextField id="standard-basic" style={{width: '10ch'}} type="text" value={newStorage} onChange={(e) => setNewStorage(e.target.value)} />
+            <Button onClick={(e) => {
                 e.stopPropagation()
                 props.handleProductUpdate(props.product, newStorage, "storage")
                 setStorageEdit(false)
-                }}>OK</button>
+                }}>OK</Button>
         </span> :
         <span>{props.product.storage}</span>
     }
   
     return (
-        <div className="product-container">
-            <div key={props.product.id} className="product-card">
+        <Grid className="product-container">
+            <Paper key={props.product.id} className="product-card">
                 <img className="product-png" src={props.product.image} alt={props.product.name} />
                 <h2>{props.product.name}</h2>
                 <p>Category: {props.product.category}</p>
@@ -65,12 +68,12 @@ export default function ProductCard(props) {
                 <p className="last-btn">Remaining Shelf Life: <Moment fromNow>{props.product.expirationDate}</Moment></p>
                     <ButtonGroup size="small" >
                         <Button variant="contained" onClick={addClick}>Add to Grocery List</Button>
-                        <Popper id={popperId} open={popperOpen} anchorEl={anchorEl}>
-                            <div className="paper-popper">Added to Grocery List</div>
+                        <Popper id={popperId} open={popperOpen} enchorEl={enchorEl}>
+                            <Paper elevation={3} className="paper-popper">Added to Grocery List</Paper>
                         </Popper>
                         <Button variant="contained" onClick={deleteClick}>Remove from List</Button>
                     </ButtonGroup>
-            </div>
-        </div>
+            </Paper>
+        </Grid>
     )
 }

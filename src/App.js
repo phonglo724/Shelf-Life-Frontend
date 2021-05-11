@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from "react";
 import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
 import './App.css';
-import fridge from "./images/fridge.png"
-import freezer from "./images/freezer.png"
-import pantry from "./images/pantry.png"
+import fridge from "./images/fridge.png";
+import freezer from "./images/freezer.png";
+import pantry from "./images/pantry.png";
 import ProductPage from './Components/ProductPage';
 import NavBar from './Components/NavBar';
 import GroceryListPage from './Components/GroceryListPage';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
 const baseURL = ("http://localhost:9000/")
 const productsURL = (`${baseURL}products/`)
@@ -33,18 +35,6 @@ class App extends Component {
   }
 
   handleProductUpdate = (product, updatedValue, productQuantity) => {
-    // fetch(`${productsURL}${product}`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Accept": "application/json"
-    //   },
-    //   body: JSON.stringify({
-    //     quantity: "",
-    //     storage: ""
-    //   })
-    // })
-    // .then(response => {
       const products = [...this.state.products]
       const newProduct = products.find(item => {
         return item.id === product.id
@@ -59,11 +49,8 @@ class App extends Component {
         products: products
       })
     }
-  // )}
-  
 
   addProductToShoppingList = (product) => {
-    // console.log('addProductToShoppingList')
     const list = this.state.shoppingLists.find(item => {
       return item.id === product.id
     })
@@ -75,7 +62,6 @@ class App extends Component {
   }
     
   deleteProduct = (productId) => {
-    // console.log('deleteProduct')
     fetch(`${productsURL}${productId}`, {
       method: "DELETE",
     })
@@ -95,7 +81,6 @@ class App extends Component {
 
   selectedProduct = (e) => {
     const storage = this.state.products.filter(specificProduct => {
-      // console.log(specificProduct.storage, e.currentTarget.id)
       return specificProduct.storage === e.currentTarget.id
     })
     this.setState({
@@ -122,7 +107,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App" >
+      <Grid className="App" >
         <BrowserRouter>
           <NavBar />
         <NavLink to="/" style={{textDecoration: 'none'}}>
@@ -140,6 +125,7 @@ class App extends Component {
               /> 
             : 
             <Fragment>
+              <Paper>
               <img 
                 className="freezer" 
                 id="Freezer" 
@@ -147,6 +133,8 @@ class App extends Component {
                 src={`${freezer}`} 
                 onClick={(e) => this.selectedProduct(e)} 
               />
+              </Paper>
+              <Paper>
               <img 
                 className="fridge" 
                 id="Fridge" 
@@ -154,6 +142,8 @@ class App extends Component {
                 src={`${fridge}`} 
                 onClick={(e) => this.selectedProduct(e)} 
               />
+              </Paper>
+              <Paper>
               <img 
                 className="pantry" 
                 id="Pantry" 
@@ -161,6 +151,7 @@ class App extends Component {
                 src={`${pantry}`} 
                 onClick={(e) => this.selectedProduct(e)} 
               />
+              </Paper>
             </Fragment>}
           </Route>
           <Switch>
@@ -169,7 +160,7 @@ class App extends Component {
             </Route>
           </Switch>
         </BrowserRouter>
-      </div>
+      </Grid>
     );
   }
 }
