@@ -7,6 +7,7 @@ export default function NavBar() {
         <header>
             <div>
                 <nav className="navigation">
+                    <h2 className="hello">Hello Phong</h2>
                     <NavLink 
                         to='/lists' 
                         exact style={{textDecoration: 'none'}}

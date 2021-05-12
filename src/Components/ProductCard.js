@@ -54,12 +54,12 @@ export default function ProductCard(props) {
             <Paper key={props.product.id} className="product-card">
                 <img className="product-png" src={props.product.image} alt={props.product.name} />
                 <h2>{props.product.name}</h2>
-                <p>Category: {props.product.category}</p>
-                <p onClick={() => {setQuantityEdit(true)}}>Quantities: {changeQuantityValue()}</p>
-                <p onClick={() => {setStorageEdit(true)}}>Stored: {changeStorageValue()}</p>
-                <p>Date Bought: <Moment format="MM/DD/YYYY">{props.product.dateBought}</Moment></p>
+                <p>Remaining Shelf Life: <Moment fromNow>{props.product.expirationDate}</Moment></p>
                 <p>Expiration Date: <Moment format="MM/DD/YYYY">{props.product.expirationDate}</Moment></p>
-                <p className="last-btn">Remaining Shelf Life: <Moment fromNow>{props.product.expirationDate}</Moment></p>
+                <p>Date Bought: <Moment format="MM/DD/YYYY">{props.product.dateBought}</Moment></p>
+                <p>Category: {props.product.category}</p>
+                <p onClick={() => {setStorageEdit(true)}}>Stored: {changeStorageValue()}</p>
+                <p className="last-btn" onClick={() => {setQuantityEdit(true)}}>Quantities: {changeQuantityValue()}</p>
                     <ButtonGroup size="small" >
                         <Button variant="contained" onClick={addClick}>Add to Grocery List</Button>
                         <Button variant="contained" onClick={deleteClick}>Remove from List</Button>
