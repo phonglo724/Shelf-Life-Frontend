@@ -1,13 +1,17 @@
 import React from 'react';
 import '../App.css';
 import { NavLink } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography'
 
 export default function NavBar() {
     return (
         <header>
             <div>
                 <nav className="navigation">
-                    <h2 className="hello">Hello Phong</h2>
+                    <Typography 
+                        variant="h5" 
+                        className="hello"
+                    >Hello Phong</Typography>
                     <NavLink 
                         to='/lists' 
                         exact style={{textDecoration: 'none'}}
