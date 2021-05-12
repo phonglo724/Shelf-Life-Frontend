@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
 import './App.css';
 import fridge from "./images/fridge1.png";
 import freezer from "./images/freezer1.png";
-import pantry from "./images/pantry.png";
+import pantry from "./images/pantry2.png";
 import ProductPage from './Components/ProductPage';
 import NavBar from './Components/NavBar';
 import GroceryListPage from './Components/GroceryListPage';
