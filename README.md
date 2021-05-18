@@ -17,7 +17,7 @@
 Shelf Life is a full stack web application allowing users to view their groceries in three different storage categories: freezer, fridge, or pantry. Discover what is inside each storage by clicking on their image. By selecting a storage you can then view the specific food items located in that storage. There you will find important information regarding the remaining shelf life of an item, including, date bought, date it expires, where the item is stored, which food category the item fits in, and the number of items remaining.
 
 ## Intro Video
-[Shelf Life on YouTube](COMING SOON)
+[Shelf Life on YouTube](https://youtu.be/VtisiK-nUbI)
 
 ## Technologies
 * React - version 17.0.2
