@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# README
+# SHELF LIFE
+> A web application to keep track of your groceries before they spoil in either the freezer, fridge, or pantry.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of contents
+* [General info](#general-info)
+* [Intro Video](#intro-video)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Features](#features)
+* [Status](#status)
+* [Inspiration](#inspiration)
+* [Contact](#contact)
 
-## Available Scripts
 
-In the project directory, you can run:
+## General info
+Shelf Life is a full stack web application allowing users to view their groceries in three different storage categories: freezer, fridge, or pantry. Discover what is inside each storage by clicking on their image. By selecting a storage you can then view the specific food items located in that storage. There you will find important information regarding the remaining shelf life of an item, including, date bought, date it expires, where the item is stored, which food category the item fits in, and the number of items remaining.
 
-### `yarn start`
+## Intro Video
+[Shelf Life on YouTube](COMING SOON)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies
+* React - version 17.0.2
+* React DOM - version 17.0.2
+* React Moment - version 1.1.1
+* React Router DOM - version 5.2.0
+* Material UI - version 4.11.4
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Setup
+To run this website, install it locally by cloning the GitHub repository. Run:
+``` 
+npm run server
 
-### `yarn test`
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Code Examples
+```React
+  handleProductUpdate = (product, updatedValue, productQuantity) => {
+      const products = [...this.state.products]
+      const newProduct = products.find(item => {
+        return item.id === product.id
+      })
+      if(productQuantity === "quantity"){
+        newProduct.quantity = updatedValue
+      } else {
+        console.log('productQuantity', productQuantity)
+        newProduct.storage = updatedValue
+      }
+      this.setState({
+        products: products
+      })
+    }
+```
 
-### `yarn build`
+```Material UI
+        <Grid className="product-container">
+            <Paper key={props.product.id} className="product-card">
+                <img className="product-png" src={props.product.image} alt={props.product.name} />
+                <h2>{props.product.name}</h2>
+                <p>Remaining Shelf Life: <Moment fromNow>{props.product.expirationDate}</Moment></p>
+                <p>Expiration Date: <Moment format="MM/DD/YYYY">{props.product.expirationDate}</Moment></p>
+                <p>Date Bought: <Moment format="MM/DD/YYYY">{props.product.dateBought}</Moment></p>
+                <p>Category: {props.product.category}</p>
+                <p onClick={() => {setStorageEdit(true)}}>Stored: {changeStorageValue()}</p>
+                <p className="last-btn" onClick={() => {setQuantityEdit(true)}}>Quantities: {changeQuantityValue()}</p>
+                    <ButtonGroup size="small" >
+                        <Button variant="contained" onClick={addClick}>Add to Grocery List</Button>
+                        <Button variant="contained" onClick={deleteClick}>Remove from List</Button>
+                    </ButtonGroup>
+            </Paper>
+        </Grid>
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
+* Each item is filtered according to where it is stored
+* Change quantities of items in each card
+* Product page is responsive
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To-do list:
+* Add a form to add more items
+* Have updated quantities persist in the backend when changed by user
+* User log-in and log-out
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Status
+Project is: finished with all functionality -- outside of the to-do list.
 
-### `yarn eject`
+## Inspiration
+The inspiration for Shelf Life comes from personal experience. I enjoy cooking as a form a therapy, but my biggest problem when preparing a meal is discovering spoiled food! Because life gets so busy and I tend to forget what I bought from the supermarket. So I decided to build an app to help me resolve this issue.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Contact
+Created by [Phong Lo](https://www.linkedin.com/in/phong-lo)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to contact me! :smile:
