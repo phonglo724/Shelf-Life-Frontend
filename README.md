@@ -80,6 +80,7 @@ To-do list:
 * Add a form to add more items
 * Have updated quantities persist in the backend when changed by user
 * User log-in and log-out
+* Deploy front-end via Firebase and back-end via PostgreSQL
 
 ## Status
 Project is: finished with all functionality -- outside of the to-do list.
