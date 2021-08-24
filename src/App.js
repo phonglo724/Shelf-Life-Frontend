@@ -10,6 +10,7 @@ import GroceryListPage from './Components/GroceryListPage';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 
 const baseURL = ("http://localhost:9000/")
 const productsURL = (`${baseURL}products/`)
@@ -112,7 +113,7 @@ class App extends Component {
         <BrowserRouter>
           <NavBar />
         <NavLink to="/" style={{textDecoration: 'none'}}>
-          <h1 className="title" onClick={(e) => this.backButton(e)}>Shelf Life</h1>
+          <Typography variant="h2" className="title" onClick={(e) => this.backButton(e)}>Shelf Life</Typography>
         </NavLink>
         <Route exact path="/">
             {this.state.showProducts 
@@ -134,8 +135,6 @@ class App extends Component {
                 src={`${freezer}`} 
                 onClick={(e) => this.selectedProduct(e)} 
               />
-              {/* </Paper>
-              <Paper> */}
               <img 
                 className="fridge" 
                 id="Fridge" 
@@ -143,8 +142,6 @@ class App extends Component {
                 src={`${fridge}`} 
                 onClick={(e) => this.selectedProduct(e)} 
               />
-              {/* </Paper>
-              <Paper> */}
               <img 
                 className="pantry" 
                 id="Pantry" 
