@@ -9,6 +9,7 @@ import NavBar from './Components/NavBar';
 import GroceryListPage from './Components/GroceryListPage';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
 
 const baseURL = ("http://localhost:9000/")
 const productsURL = (`${baseURL}products/`)
@@ -133,8 +134,8 @@ class App extends Component {
                 src={`${freezer}`} 
                 onClick={(e) => this.selectedProduct(e)} 
               />
-              </Paper>
-              <Paper>
+              {/* </Paper>
+              <Paper> */}
               <img 
                 className="fridge" 
                 id="Fridge" 
@@ -142,8 +143,8 @@ class App extends Component {
                 src={`${fridge}`} 
                 onClick={(e) => this.selectedProduct(e)} 
               />
-              </Paper>
-              <Paper>
+              {/* </Paper>
+              <Paper> */}
               <img 
                 className="pantry" 
                 id="Pantry" 
